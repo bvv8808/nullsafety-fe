@@ -21,7 +21,7 @@ const MainScreen = () => {
       setCategories(c);
     });
   }, []);
-  return <div>This is Main Screen.</div>;
+  return <div className="nav-wrapper">This is Main Screen.</div>;
 };
 
 export default MainScreen;

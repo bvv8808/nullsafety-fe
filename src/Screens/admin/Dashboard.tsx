@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { RouteChildrenProps } from "react-router";
+import LayoutAdm from "../../base/LayoutAdm";
 import { getToken } from "../../lib/cookie";
 import { getDashData } from "../../lib/fetcher";
 import { TDashData } from "../../lib/types";
@@ -22,6 +23,7 @@ const shuckData: TDashData = {
 
 const DashboardScreen = ({ history }: RouteChildrenProps) => {
   const [dashData, setDashData] = useState(shuckData);
+  const [authed, setAuthed] = useState(false);
   useEffect(() => {
     getDashData().then((data) => {
       if (!data) {
@@ -29,12 +31,17 @@ const DashboardScreen = ({ history }: RouteChildrenProps) => {
         history.goBack();
         return;
       }
+      setAuthed(true);
 
       // setState
       console.log("#1", data);
     });
   }, []);
-  return <div></div>;
+  return !authed ? (
+    <div></div>
+  ) : (
+    <LayoutAdm section="dashboard">Dashboard Screen</LayoutAdm>
+  );
 };
 
 export default DashboardScreen;

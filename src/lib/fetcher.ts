@@ -71,7 +71,7 @@ export const getDashData = async () => {
 
     const fetched = await axios.get(baseUrl + "/adm/dash", {
       headers: {
-        Cookies: `token=${token}`,
+        Cookie: `token=${token}`,
       },
     });
 

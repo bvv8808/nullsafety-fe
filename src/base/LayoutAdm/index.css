@@ -1,0 +1,44 @@
+.l-adm-wrapper {
+  /* border: 5px solid blue; */
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+.l-adm-nav-wrapper {
+  width: 250px;
+  height: 100%;
+  border: 3px solid blue;
+
+  display: flex;
+  flex-direction: column;
+}
+.l-adm-nav-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.l-adm-nav-body {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.l-adm-nav-link {
+  text-decoration: none;
+}
+.l-adm-nav-link-inactive {
+  color: black;
+}
+.l-adm-nav-link-active {
+  color: red;
+}
+.l-adm-logo {
+  width: 25%;
+}
+.l-adm-children-wrapper {
+  flex: 1;
+  height: 100%;
+  border: 3px solid green;
+}
