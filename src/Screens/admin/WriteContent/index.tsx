@@ -2,13 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import { RouteChildrenProps } from "react-router";
 import LayoutAdm from "../../../base/LayoutAdm";
 import { getToken } from "../../../lib/cookie";
-import { writeContent } from "../../../lib/fetcher";
+import {
+  writeContent,
+  getCategoryNames,
+  addCategory,
+} from "../../../lib/fetcher";
 import { IFetchParamsToWrite } from "../../../lib/interfaces";
+import "./index.css";
 
 const WriteContentScreen = ({ history }: RouteChildrenProps) => {
   const [authed, setAuthed] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [visibleCategories, setVisibleCategories] = useState(false);
+  const [categories, setCategories] = useState<string[]>([]);
 
   const refContent = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
@@ -31,7 +37,33 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
       category: selectedCategory,
     };
     writeContent(body).then((r) => {
-      console.log("#posted ", r);
+      if (!r) {
+        // 네트워크 에러
+        return;
+      }
+      if (r.code) {
+        // 실패
+      }
+      console.log("#successly posted ", r);
+    });
+  };
+
+  const onAddCategory = () => {
+    const newCategory: HTMLInputElement | null =
+      document.querySelector("#iNewCategory");
+    if (!newCategory) return;
+
+    const newName = newCategory.value;
+    if (!newName.length) {
+      alert("새 카테고리의 이름을 입력해 주세요");
+      return;
+    }
+
+    addCategory(newName).then(() => {
+      // 추가 후
+      setVisibleCategories(false);
+      setCategories((c) => [...c, newName]);
+      setSelectedCategory(newName);
     });
   };
   return !authed ? (
@@ -41,7 +73,18 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
       <h1>Write</h1>
       <input type="text" name="title" id="iTitle" placeholder="제목" />
       <div>
-        <button>{selectedCategory || "카테고리"}</button>
+        <button
+          onClick={() => {
+            getCategoryNames().then((c) => {
+              console.log(c);
+
+              setCategories(c);
+              setVisibleCategories(true);
+            });
+          }}
+        >
+          {selectedCategory || "카테고리"}
+        </button>
         <input type="file" name="picture" id="iFile" />
       </div>
       <textarea
@@ -55,7 +98,28 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
         <button>cancel</button>
       </div>
 
-      {visibleCategories && <div>select category</div>}
+      {visibleCategories && (
+        <div className="adm-write-category-wrapper">
+          select category
+          {categories.map((c) => {
+            return (
+              <div
+                key={c}
+                onClick={() => {
+                  setVisibleCategories(false);
+                  setSelectedCategory(c);
+                }}
+              >
+                {c}
+              </div>
+            );
+          })}
+          <div>
+            <input type="text" id="iNewCategory" />
+            <button onClick={onAddCategory}>ADD</button>
+          </div>
+        </div>
+      )}
     </LayoutAdm>
   );
 };

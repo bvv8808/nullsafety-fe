@@ -4,12 +4,13 @@ import { IFetchParamsForContents, IFetchParamsToWrite } from "./interfaces";
 import { TContentPreview, TDashData, TMainData } from "./types";
 import { setToken, getToken } from "./cookie";
 
-const baseUrl = "http://146.56.187.12:5000";
+// const baseUrl = "http://146.56.187.12:5000";
+const baseUrl = "http://localhost:5000";
 
 export const getCategoryNames = async () => {
   try {
     const fetched = await axios.get(baseUrl + "/categories");
-    const res: string[] = fetched.data;
+    const res: string[] = fetched.data.categories;
     return res;
   } catch (e) {
     console.warn('Error in "getCategoryNames":: ', e);
@@ -52,6 +53,7 @@ export const getMainData = async () => {
 export const admSignIn = async (k: string) => {
   try {
     const fetched = await axios.post(baseUrl + "/adm/auth", { k });
+
     if (fetched.data.token) {
       setToken(fetched.data.token);
       return true;
@@ -70,9 +72,7 @@ export const getDashData = async () => {
     if (!token) return null;
 
     const fetched = await axios.get(baseUrl + "/adm/dash", {
-      headers: {
-        Cookie: `token=${token}`,
-      },
+      withCredentials: true,
     });
 
     const res: TDashData = fetched.data;
@@ -90,15 +90,34 @@ export const writeContent = async (body: IFetchParamsToWrite) => {
     if (!token) return null;
 
     const fetched = await axios.post(baseUrl + "/adm/content", body, {
-      headers: {
-        Cookie: `token=${token}`,
-      },
+      withCredentials: true,
     });
 
-    const res: TDashData = fetched.data;
+    const res: { code: number; msg: string } = fetched.data;
     return res;
   } catch (e) {
     console.warn('Error in "writeContent":: ', e);
     return null;
+  }
+};
+
+export const addCategory = async (name: string) => {
+  try {
+    const token = getToken();
+
+    const fetched = await axios.post(
+      baseUrl + "/adm/add-category",
+      { category: name },
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (!fetched.data.code) return true;
+    console.log("Fail to add a new category::: ", fetched.data.msg);
+    return false;
+  } catch (e) {
+    console.warn('Error in "addCategory":: ', e);
+    return false;
   }
 };

@@ -45,3 +45,9 @@ export type TDashData = {
   cntContents: TCntContents;
   cntLike: TCntLike;
 };
+
+export type TCategory = {
+  id: number;
+  name: string;
+  priority: number;
+};

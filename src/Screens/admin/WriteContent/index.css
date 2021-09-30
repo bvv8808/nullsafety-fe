@@ -1,0 +1,9 @@
+.adm-write-category-wrapper {
+  position: absolute;
+  width: 60%;
+  padding: 50px 0;
+  background-color: #777;
+  transform: translateY(-50%);
+  left: 20%;
+  top: 50%;
+}
