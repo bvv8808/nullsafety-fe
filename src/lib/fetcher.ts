@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { IFetchParamsForContents } from "./interfaces";
+import { IFetchParamsForContents, IFetchParamsToWrite } from "./interfaces";
 import { TContentPreview, TDashData, TMainData } from "./types";
 import { setToken, getToken } from "./cookie";
 
@@ -80,5 +80,25 @@ export const getDashData = async () => {
   } catch (e) {
     // console.warn('Error in "admSignIn":: ', e);
     // return false;
+  }
+};
+
+export const writeContent = async (body: IFetchParamsToWrite) => {
+  try {
+    const token = getToken();
+
+    if (!token) return null;
+
+    const fetched = await axios.post(baseUrl + "/adm/content", body, {
+      headers: {
+        Cookie: `token=${token}`,
+      },
+    });
+
+    const res: TDashData = fetched.data;
+    return res;
+  } catch (e) {
+    console.warn('Error in "writeContent":: ', e);
+    return null;
   }
 };

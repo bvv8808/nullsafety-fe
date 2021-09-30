@@ -3,3 +3,9 @@ export interface IFetchParamsForContents {
   offset: number;
   limit: number;
 }
+
+export interface IFetchParamsToWrite {
+  title: string;
+  content: string;
+  category: string;
+}

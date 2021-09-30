@@ -4,8 +4,8 @@ import logo from "../../logo.svg";
 import { Link } from "react-router-dom";
 
 interface IProps {
-  section: "dashboard" | "write" | "contents" | "editCategory";
-  children: [JSX.Element | string] | JSX.Element | string;
+  section: "dashboard" | "write" | "contents" | "editCategory" | "modify";
+  children: any;
 }
 const LayoutAdm = ({ section, children }: IProps) => {
   return (

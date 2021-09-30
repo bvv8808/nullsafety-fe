@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { RouteChildrenProps } from "react-router";
-import { getToken } from "../../lib/cookie";
-import { getContentsByCategory } from "../../lib/fetcher";
-import { TContentPreview } from "../../lib/types";
+import { getToken } from "../../../lib/cookie";
+import { getContentsByCategory } from "../../../lib/fetcher";
+import { TContentPreview } from "../../../lib/types";
 
 const fetchLimit = 10;
 const AdmContentListScreen = ({ history }: RouteChildrenProps) => {

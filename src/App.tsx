@@ -9,6 +9,7 @@ import DashboardScreen from "./Screens/admin/Dashboard";
 import AdmContentListScreen from "./Screens/admin/ContentList";
 import EditCategoryScreen from "./Screens/admin/EditCategory";
 import WriteContentScreen from "./Screens/admin/WriteContent";
+import ModifyContentScreen from "./Screens/admin/ModifyContent";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/adm/signin" component={SignInScreen} />
       <Route path="/adm/dash" component={DashboardScreen} />
       <Route path="/adm/write" component={WriteContentScreen} />
+      <Route path="/adm/modify" component={ModifyContentScreen} />
       <Route path="/adm/editCategory" component={EditCategoryScreen} />
       <Route path="/adm/contents" component={AdmContentListScreen} />
     </div>

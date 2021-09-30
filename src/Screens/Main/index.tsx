@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getCategoryNames, getMainData } from "../lib/fetcher";
-import { TMainData } from "../lib/types";
+import { getCategoryNames, getMainData } from "../../lib/fetcher";
+import { TMainData } from "../../lib/types";
 
 const shuckMainData = {
   cntToday: 0,

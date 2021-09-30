@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteChildrenProps } from "react-router";
-import { admSignIn } from "../../lib/fetcher";
+import { admSignIn } from "../../../lib/fetcher";
 
 const SignInScreen = ({ history }: RouteChildrenProps) => {
   return (

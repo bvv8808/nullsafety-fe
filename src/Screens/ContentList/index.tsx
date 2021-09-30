@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { RouteComponentProps } from "react-router";
-import { getCategoryNames, getContentsByCategory } from "../lib/fetcher";
-import { TContentPreview } from "../lib/types";
+import { getCategoryNames, getContentsByCategory } from "../../lib/fetcher";
+import { TContentPreview } from "../../lib/types";
 import qs from "querystring";
 
 const fetchLimit = 5;
