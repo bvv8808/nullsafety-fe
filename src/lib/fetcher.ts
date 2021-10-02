@@ -28,7 +28,7 @@ export const getContentsByCategory = async (
 ) => {
   try {
     const fetched = await axios.get(baseUrl + `/contents`, { params });
-    const res: TContentPreview[] = fetched.data;
+    const res: TContentPreview[] = fetched.data.contentPreviews;
     return res;
   } catch (e) {
     console.warn('Error in "getContentsByCategory":: ', e);
@@ -144,5 +144,19 @@ export const uploadImage = async (imgData: string) => {
   } catch (e) {
     console.warn('Error in "uploadImage":: ', e);
     return "";
+  }
+};
+
+export const api_deleteContent = async (cid: number) => {
+  try {
+    await axios.post(
+      baseUrl + "/adm/remove",
+      { cid },
+      { withCredentials: true }
+    );
+    return true;
+  } catch (e) {
+    console.warn('Error in "notifyVisit":: ', e);
+    return false;
   }
 };

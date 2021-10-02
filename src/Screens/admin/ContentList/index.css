@@ -1,0 +1,14 @@
+.adm-list-item-wrapper {
+  display: flex;
+  width: 100%;
+  border: 1px solid gray;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.adm-list-item-title {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
