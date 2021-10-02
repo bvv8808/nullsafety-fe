@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { RouteChildrenProps } from "react-router";
 import LayoutAdm from "../../../base/LayoutAdm";
+import { SERVER_URL } from "../../../lib/constants";
 import { getToken } from "../../../lib/cookie";
 import {
   writeContent,
   getCategoryNames,
   addCategory,
+  uploadImage,
 } from "../../../lib/fetcher";
 import { IFetchParamsToWrite } from "../../../lib/interfaces";
 import "./index.css";
@@ -17,11 +19,15 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
   const [categories, setCategories] = useState<string[]>([]);
 
   const refContent = useRef<HTMLTextAreaElement>(null);
+  const refImage = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (!getToken()) {
       alert("Permission denied");
       history.goBack();
-    } else setAuthed(true);
+      return;
+    }
+
+    setAuthed(true);
   }, []);
 
   const post = () => {
@@ -66,6 +72,27 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
       setSelectedCategory(newName);
     });
   };
+
+  const upload = () => {
+    if (!refImage.current || !refImage.current.files) return;
+
+    // File Upload
+    const img = refImage.current.files[0];
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (!e.target || !e.target.result) return;
+      const result: string = e.target.result.toString();
+      const sep = result.indexOf(",");
+      const data = result.substring(sep + 1);
+
+      uploadImage(data).then((path) => {
+        if (!refContent.current) return;
+        refContent.current.value += `\n\n![](${SERVER_URL + path})`;
+      });
+    };
+    reader.readAsDataURL(img);
+  };
   return !authed ? (
     <div></div>
   ) : (
@@ -85,7 +112,13 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
         >
           {selectedCategory || "카테고리"}
         </button>
-        <input type="file" name="picture" id="iFile" />
+        <input
+          ref={refImage}
+          onChange={upload}
+          type="file"
+          name="picture"
+          id="iFile"
+        />
       </div>
       <textarea
         ref={refContent}

@@ -51,3 +51,9 @@ export type TCategory = {
   name: string;
   priority: number;
 };
+
+export type TResponseUpload = {
+  code: number;
+  msg: string;
+  path: string;
+};

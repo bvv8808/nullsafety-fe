@@ -1,11 +1,16 @@
 import axios from "axios";
 
 import { IFetchParamsForContents, IFetchParamsToWrite } from "./interfaces";
-import { TContentPreview, TDashData, TMainData } from "./types";
+import {
+  TContentPreview,
+  TDashData,
+  TMainData,
+  TResponseUpload,
+} from "./types";
 import { setToken, getToken } from "./cookie";
+import { SERVER_URL } from "./constants";
 
-// const baseUrl = "http://146.56.187.12:5000";
-const baseUrl = "http://localhost:5000";
+const baseUrl = SERVER_URL;
 
 export const getCategoryNames = async () => {
   try {
@@ -119,5 +124,25 @@ export const addCategory = async (name: string) => {
   } catch (e) {
     console.warn('Error in "addCategory":: ', e);
     return false;
+  }
+};
+
+export const uploadImage = async (imgData: string) => {
+  try {
+    const fetched = await axios.post(
+      baseUrl + "/adm/pic",
+      { pic: imgData },
+      {
+        withCredentials: true,
+      }
+    );
+
+    const result: TResponseUpload = fetched.data;
+    console.log("Image upload result: ", result.code, "/", result.msg);
+
+    return result.path;
+  } catch (e) {
+    console.warn('Error in "uploadImage":: ', e);
+    return "";
   }
 };
