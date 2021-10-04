@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { IFetchParamsForContents, IFetchParamsToWrite } from "./interfaces";
 import {
+  TCategoryDetail,
   TContentPreview,
   TDashData,
   TMainData,
@@ -158,5 +159,18 @@ export const api_deleteContent = async (cid: number) => {
   } catch (e) {
     console.warn('Error in "notifyVisit":: ', e);
     return false;
+  }
+};
+
+export const getFullCategories = async () => {
+  try {
+    const fetched = await axios.get(baseUrl + "/adm/category", {
+      withCredentials: true,
+    });
+    const res: TCategoryDetail[] = fetched.data?.categories || [];
+    return res;
+  } catch (e) {
+    console.warn('Error in "getFullCategories":: ', e);
+    return [];
   }
 };

@@ -47,7 +47,7 @@ const LayoutAdm = ({ section, children }: IProps) => {
             컨텐츠 관리
           </Link>
           <Link
-            to="/adm/editCategoy"
+            to="/adm/editCategory"
             className={`l-adm-nav-link ${
               section === "editCategory"
                 ? "l-adm-nav-link-inactive"
