@@ -6,7 +6,7 @@ import { getToken } from "../../../lib/cookie";
 import {
   writeContent,
   getCategoryNames,
-  addCategory,
+  api_addCategory,
   uploadImage,
 } from "../../../lib/fetcher";
 import { IFetchParamsToWrite } from "../../../lib/interfaces";
@@ -65,7 +65,7 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
       return;
     }
 
-    addCategory(newName).then(() => {
+    api_addCategory(newName).then(() => {
       // 추가 후
       setVisibleCategories(false);
       setCategories((c) => [...c, newName]);

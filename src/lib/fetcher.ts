@@ -107,7 +107,7 @@ export const writeContent = async (body: IFetchParamsToWrite) => {
   }
 };
 
-export const addCategory = async (name: string) => {
+export const api_addCategory = async (name: string) => {
   try {
     const token = getToken();
 
@@ -162,7 +162,7 @@ export const api_deleteContent = async (cid: number) => {
   }
 };
 
-export const getFullCategories = async () => {
+export const api_getFullCategories = async () => {
   try {
     const fetched = await axios.get(baseUrl + "/adm/category", {
       withCredentials: true,
@@ -172,5 +172,20 @@ export const getFullCategories = async () => {
   } catch (e) {
     console.warn('Error in "getFullCategories":: ', e);
     return [];
+  }
+};
+
+export const api_editCatgory = async (categories: TCategoryDetail[]) => {
+  try {
+    const fetched = await axios.post(
+      baseUrl + "/adm/category",
+      { categories },
+      { withCredentials: true }
+    );
+    if (fetched.data.code === 0) return true;
+    else return false;
+  } catch (e) {
+    console.warn('Error in "api_editCatgory":: ', e);
+    return false;
   }
 };
