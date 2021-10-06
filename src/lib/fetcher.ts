@@ -3,6 +3,7 @@ import axios from "axios";
 import { IFetchParamsForContents, IFetchParamsToWrite } from "./interfaces";
 import {
   TCategoryDetail,
+  TContent,
   TContentPreview,
   TDashData,
   TMainData,
@@ -187,5 +188,16 @@ export const api_editCatgory = async (categories: TCategoryDetail[]) => {
   } catch (e) {
     console.warn('Error in "api_editCatgory":: ', e);
     return false;
+  }
+};
+
+export const api_getFullContent = async (cid: number) => {
+  try {
+    const fetched = await axios.get(baseUrl + "/content", { params: { cid } });
+    const res: TContent = fetched.data.contentData;
+    return res;
+  } catch (e) {
+    console.warn('Error in "api_getFullContent":: ', e);
+    return null;
   }
 };

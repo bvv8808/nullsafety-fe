@@ -5,6 +5,7 @@ export interface IFetchParamsForContents {
 }
 
 export interface IFetchParamsToWrite {
+  cid?: number;
   title: string;
   content: string;
   category: string;

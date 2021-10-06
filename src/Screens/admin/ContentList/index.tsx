@@ -85,7 +85,13 @@ const AdmContentListScreen = ({ history }: RouteChildrenProps) => {
           <div key={content.id} className="adm-list-item-wrapper">
             <div className="adm-list-item-title">{content.title}</div>
             <div>
-              <button>수정</button>
+              <button
+                onClick={() => {
+                  history.push(`/adm/modify?cid=${content.id}`);
+                }}
+              >
+                수정
+              </button>
               <button onClick={() => deleteContent(content.id, index)}>
                 삭제
               </button>
