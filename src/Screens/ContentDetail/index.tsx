@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { RouteChildrenProps } from "react-router";
 
 const ContentDetailScreen = ({
   match,
+  location,
   history,
 }: RouteChildrenProps<{ cid: string }>) => {
   const cid = useMemo(() => {
@@ -10,6 +11,11 @@ const ContentDetailScreen = ({
     const paramCid = Number(match.params.cid);
     return paramCid || -1;
   }, [match]);
+
+  useEffect(() => {
+    console.log("cid: ", cid);
+    console.log("to: ", location.state);
+  }, []);
   return <div></div>;
 };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCategoryNames, getMainData } from "../../lib/fetcher";
+import { api_getCategoryNames, getMainData } from "../../lib/fetcher";
 import { TMainData } from "../../lib/types";
 
 const shuckMainData = {
@@ -17,7 +17,7 @@ const MainScreen = () => {
       r && setMainData(r);
       console.log(r);
     });
-    getCategoryNames().then((c) => {
+    api_getCategoryNames().then((c) => {
       setCategories(c);
     });
   }, []);

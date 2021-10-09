@@ -14,7 +14,7 @@ import { SERVER_URL } from "./constants";
 
 const baseUrl = SERVER_URL;
 
-export const getCategoryNames = async () => {
+export const api_getCategoryNames = async () => {
   try {
     const fetched = await axios.get(baseUrl + "/categories");
     const res: string[] = fetched.data.categories;
@@ -25,7 +25,7 @@ export const getCategoryNames = async () => {
   }
 };
 
-export const getContentsByCategory = async (
+export const api_getContentsByCategory = async (
   params: IFetchParamsForContents
 ) => {
   try {

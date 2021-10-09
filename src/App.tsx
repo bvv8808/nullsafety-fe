@@ -10,12 +10,14 @@ import AdmContentListScreen from "./Screens/admin/ContentList";
 import EditCategoryScreen from "./Screens/admin/EditCategory";
 import WriteContentScreen from "./Screens/admin/WriteContent";
 import ModifyContentScreen from "./Screens/admin/ModifyContent";
+import ContentDetailScreen from "./Screens/ContentDetail";
 
 function App() {
   return (
     <div>
       <Route path="/" component={MainScreen} exact />
       <Route path="/contents" component={ContentListScreen} />
+      <Route path="/content/:cid" component={ContentDetailScreen} exact />
       <Route path="/adm/signin" component={SignInScreen} />
       <Route path="/adm/dash" component={DashboardScreen} />
       <Route path="/adm/write" component={WriteContentScreen} />

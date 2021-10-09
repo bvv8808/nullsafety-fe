@@ -5,7 +5,7 @@ import { SERVER_URL } from "../../../lib/constants";
 import { getToken } from "../../../lib/cookie";
 import {
   writeContent,
-  getCategoryNames,
+  api_getCategoryNames,
   api_addCategory,
   uploadImage,
 } from "../../../lib/fetcher";
@@ -102,7 +102,7 @@ const WriteContentScreen = ({ history }: RouteChildrenProps) => {
       <div>
         <button
           onClick={() => {
-            getCategoryNames().then((c) => {
+            api_getCategoryNames().then((c) => {
               console.log(c);
 
               setCategories(c);

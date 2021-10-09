@@ -4,8 +4,8 @@ import LayoutAdm from "../../../base/LayoutAdm";
 import { getToken } from "../../../lib/cookie";
 import {
   api_deleteContent,
-  getCategoryNames,
-  getContentsByCategory,
+  api_getCategoryNames,
+  api_getContentsByCategory,
 } from "../../../lib/fetcher";
 import { TContentPreview } from "../../../lib/types";
 import "./index.css";
@@ -27,7 +27,7 @@ const AdmContentListScreen = ({ history }: RouteChildrenProps) => {
       return;
     }
 
-    getCategoryNames().then((c) => {
+    api_getCategoryNames().then((c) => {
       console.log(c);
 
       setCategories(c);
@@ -40,7 +40,7 @@ const AdmContentListScreen = ({ history }: RouteChildrenProps) => {
   useEffect(() => {
     if (!selectedCategory) return;
     setFrom(0);
-    getContentsByCategory({
+    api_getContentsByCategory({
       category: selectedCategory,
       offset: 0,
       limit: fetchLimit,
