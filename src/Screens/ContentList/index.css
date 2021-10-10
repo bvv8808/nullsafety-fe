@@ -6,7 +6,7 @@
   overflow: auto;
 }
 .contentlist-item-container {
-  height: 150px;
+  height: 500px;
   display: flex;
   align-items: center;
   border: 1px solid blue;

@@ -12,7 +12,7 @@ const LayoutAdm = ({ section, children }: IProps) => {
     <div className="l-adm-wrapper">
       <div className="l-adm-nav-wrapper">
         <div className="l-adm-nav-header">
-          <img src={logo} className="l-adm-logo" />
+          <img src={logo} alt="logo" className="l-adm-logo" />
           NullSafety
         </div>
         <div className="l-adm-nav-body">

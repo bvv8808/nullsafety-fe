@@ -1,18 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { RouteComponentProps } from "react-router";
-import {
-  api_getContentsByCategory,
-  api_getCategoryNames,
-} from "../../lib/fetcher";
-import { TContentPreview } from "../../lib/types";
-import qs from "querystring";
+import { useEffect, useRef, useState } from "react";
+import { api_getCategoryNames } from "../../lib/fetcher";
 import "./index.css";
 import { Link } from "react-router-dom";
-
-const fetchLimit = 5;
-let endFetch = false;
-let from = 0;
-let fetching = false;
 
 interface IProps {
   categoryName: string;
@@ -61,6 +50,7 @@ const LayoutList = ({ categoryName, children }: IProps) => {
           </div>
           {categories.map((c) => (
             <Link
+              key={c}
               onClick={closeMenu}
               to={`/contents?category=${c}`}
               className={`l-list-category-container ${

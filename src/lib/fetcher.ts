@@ -110,8 +110,6 @@ export const writeContent = async (body: IFetchParamsToWrite) => {
 
 export const api_addCategory = async (name: string) => {
   try {
-    const token = getToken();
-
     const fetched = await axios.post(
       baseUrl + "/adm/add-category",
       { category: name },

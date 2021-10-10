@@ -13,8 +13,8 @@ const ContentDetailScreen = ({
   }, [match]);
 
   useEffect(() => {
-    console.log("cid: ", cid);
-    console.log("to: ", location.state);
+    // console.log("cid: ", cid);
+    // console.log("to: ", location.state);
   }, []);
   return <div></div>;
 };

@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RouteChildrenProps } from "react-router";
 import LayoutAdm from "../../../base/LayoutAdm";
-import { getToken } from "../../../lib/cookie";
 import { getDashData } from "../../../lib/fetcher";
 import { TDashData } from "../../../lib/types";
 
