@@ -1,5 +1,20 @@
 * {
   box-sizing: border-box;
+  color: #224;
+}
+
+:root {
+  --main-background: #fff9f2;
+  --title-color: #234555;
+}
+
+@font-face {
+  font-family: "batang_regular";
+  src: url(./assets/fonts/GowunBatang-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "batang_bold";
+  src: url(./assets/fonts/GowunBatang-Bold.ttf) format("truetype");
 }
 
 html,
@@ -16,6 +31,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  background-color: var(--main-background);
 }
 
 code {
