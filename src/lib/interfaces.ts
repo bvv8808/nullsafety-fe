@@ -1,3 +1,5 @@
+import { TContent, TContentPreview } from "./types";
+
 export interface IFetchParamsForContents {
   category: string;
   offset: number;
@@ -9,4 +11,15 @@ export interface IFetchParamsToWrite {
   title: string;
   content: string;
   category: string;
+}
+
+export interface IResFullContent {
+  contentData: TContent;
+  prevContentPreview: TContentPreview;
+  nextContentPreview: TContentPreview;
+}
+
+export interface IResPost {
+  code: number;
+  msg: string;
 }

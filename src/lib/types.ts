@@ -12,6 +12,7 @@ export type TContent = {
   category: string;
   createdAt: string;
   content: string;
+  liked: number;
 };
 
 export type TCntContents = {

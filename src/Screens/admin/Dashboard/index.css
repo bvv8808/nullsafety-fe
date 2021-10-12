@@ -1,0 +1,13 @@
+.dash-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dash-visitor-wrapper,
+.dash-contents-wrapper,
+.dash-like-wrapper {
+  margin-top: 40px;
+  border: 1px solid blue;
+}

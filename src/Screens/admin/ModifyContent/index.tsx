@@ -20,6 +20,7 @@ const fakeContent: TContent = {
   title: "",
   createdAt: "",
   content: "",
+  liked: -1,
 };
 
 const ModifyContentScreen = ({ history, location }: RouteChildrenProps) => {
@@ -50,12 +51,11 @@ const ModifyContentScreen = ({ history, location }: RouteChildrenProps) => {
       return;
     }
 
-    api_getFullContent(cid).then((contentData: TContent | null) => {
-      if (contentData) {
-        console.log("#contentData:: \n", contentData);
-        // 카테고리 이상하게 받아옴!!!!!
-        setContent(contentData);
-        setSelectedCategory(contentData.category);
+    api_getFullContent(cid).then((res) => {
+      if (res) {
+        console.log("#contentData:: \n", res.contentData);
+        setContent(res.contentData);
+        setSelectedCategory(res.contentData.category);
       }
     });
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, RouteChildrenProps } from "react-router-dom";
 import { api_getCategoryNames, getMainData } from "../../lib/fetcher";
 import { TMainData } from "../../lib/types";
 import "./index.css";
@@ -21,7 +21,7 @@ let startX = 0;
 let scrollLeft = 0;
 let isMouseDown = false;
 
-const MainScreen = () => {
+const MainScreen = ({ history }: RouteChildrenProps) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [mainData, setMainData] = useState<TMainData>(shuckMainData);
   const [selectedFilter, setSelectedFilter] = useState<"hit" | "like">("hit");
@@ -155,7 +155,9 @@ const MainScreen = () => {
                 }
 
                 // do something
-                console.log("clicked");
+                console.log(c);
+
+                history.push(`/content/${c.id}`, { category: c.category });
               }}
             >
               {c.id}

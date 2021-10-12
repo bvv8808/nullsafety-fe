@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { IFetchParamsForContents, IFetchParamsToWrite } from "./interfaces";
+import {
+  IFetchParamsForContents,
+  IFetchParamsToWrite,
+  IResFullContent,
+  IResPost,
+} from "./interfaces";
 import {
   TCategoryDetail,
   TContent,
@@ -192,10 +197,21 @@ export const api_editCatgory = async (categories: TCategoryDetail[]) => {
 export const api_getFullContent = async (cid: number) => {
   try {
     const fetched = await axios.get(baseUrl + "/content", { params: { cid } });
-    const res: TContent = fetched.data.contentData;
+    const res: IResFullContent = fetched.data;
     return res;
   } catch (e) {
     console.warn('Error in "api_getFullContent":: ', e);
     return null;
+  }
+};
+
+export const api_like = async (cid: number) => {
+  try {
+    const fetched = await axios.post(baseUrl + "/like", { cid });
+    const res: IResPost = fetched.data;
+    return res.msg;
+  } catch (e) {
+    console.warn('Error in "api_like":: ', e);
+    return "";
   }
 };
