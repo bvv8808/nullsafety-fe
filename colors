@@ -5,9 +5,9 @@
 #E39D6D
 
 #99794E
-#FFF9F2
-#E6C08D
+#FFF9F2 - background (ivory)
+#E6C08D - content item active border (light brown)
 #3F7999
-#8CC6E6
+#8CC6E6 - navigation active border (skyblue)
 
-#234567
+#234567 - content title (deep blue)

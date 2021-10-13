@@ -13,6 +13,7 @@
   font-family: batang_bold;
   align-items: center;
   padding: 15px 0 15px 5px;
+  border-bottom: 1px solid #eee;
 }
 .l-list-title-container > span {
   width: 35px;
@@ -35,7 +36,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px 10px;
-  border: 1px solid #eee;
+  border-right: 1px solid #eee;
   background-color: var(--main-background);
 }
 .l-list-category-wrapper > p {
@@ -71,9 +72,9 @@
   font-family: batang_regular;
 }
 .l-list-category-active {
-  color: #ea6777;
-  /* color: #d92733; */
-  /* color: #dd2e3c; */
+  /* color: #ea6777; */
+  color: var(--brown-light);
+  font-family: batang_bold;
 }
 .l-list-list {
   flex: 1;

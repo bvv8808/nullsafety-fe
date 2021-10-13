@@ -6,6 +6,9 @@ import qs from "querystring";
 import "./index.css";
 import { Link } from "react-router-dom";
 import LayoutList from "../../base/LayoutList";
+import iconExit from "../../assets/images/icon_exit.png";
+import { SERVER_URL } from "../../lib/constants";
+import ContentItem from "../../components/ContentItem";
 
 const fetchLimit = 3;
 let endFetch = false;
@@ -43,6 +46,8 @@ const ContentListScreen = ({ location }: RouteComponentProps) => {
         offset: from,
         limit: fetchLimit,
       }).then((contents) => {
+        console.log(contents);
+
         fetching = false;
         if (contents.length === fetchLimit) from += fetchLimit;
         else endFetch = true;
@@ -81,16 +86,7 @@ const ContentListScreen = ({ location }: RouteComponentProps) => {
     <LayoutList categoryName={categoryName}>
       <div className="contentlist-list">
         {contentPreviews.map((c) => (
-          <Link
-            key={c.category + c.id}
-            to={{
-              pathname: `content/${c.id}`,
-              state: { category: c.category },
-            }}
-            className="contentlist-item-container"
-          >
-            {c.title}
-          </Link>
+          <ContentItem content={c} />
         ))}
         <div id="contentlist-more"></div>
       </div>
