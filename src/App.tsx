@@ -11,10 +11,11 @@ import EditCategoryScreen from "./Screens/admin/EditCategory";
 import WriteContentScreen from "./Screens/admin/WriteContent";
 import ModifyContentScreen from "./Screens/admin/ModifyContent";
 import ContentDetailScreen from "./Screens/ContentDetail";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
-    <div>
+    <RecoilRoot>
       <Route path="/" component={MainScreen} exact />
       <Route path="/contents" component={ContentListScreen} />
       <Route path="/content/:cid" component={ContentDetailScreen} exact />
@@ -24,7 +25,7 @@ function App() {
       <Route path="/adm/modify" component={ModifyContentScreen} />
       <Route path="/adm/editCategory" component={EditCategoryScreen} />
       <Route path="/adm/contents" component={AdmContentListScreen} />
-    </div>
+    </RecoilRoot>
   );
 }
 

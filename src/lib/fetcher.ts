@@ -64,7 +64,11 @@ export const getMainData = async () => {
 
 export const admSignIn = async (k: string) => {
   try {
-    const fetched = await axios.post(baseUrl + "/adm/auth", { k });
+    const fetched = await axios.post(
+      baseUrl + "/adm/auth",
+      { k },
+      { withCredentials: true }
+    );
 
     if (fetched.data.token) {
       setToken(fetched.data.token);

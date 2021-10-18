@@ -5,6 +5,9 @@ import { api_getFullContent, api_like } from "../../lib/fetcher";
 import { TContent, TContentPreview } from "../../lib/types";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
+import "./index.css";
+import Thumb from "../../components/Thumb";
+import ContentTitle from "../../components/ContentTitle";
 
 const fakeContent: TContent = {
   id: -1,
@@ -69,35 +72,40 @@ const ContentDetailScreen = ({
   return (
     <LayoutList categoryName={content.category}>
       <div className="detail-wrapper">
-        <h3>{content.title}</h3>
+        <ContentTitle title={content.title} />
         <div className="flex-row">
-          <span onClick={like}>따봉 {liked}</span>
+          <Thumb onClick={like} cntLike={liked} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <span>{content.createdAt}</span>
         </div>
         <div className="detail-content-container">
           <ReactMarkdown>{content.content}</ReactMarkdown>
         </div>
-        <span onClick={like}>따봉 {liked}</span>
+        <Thumb onClick={like} cntLike={liked} />
 
-        <div className="flex-row">
+        <div className="detail-next-link-wrapper">
           <div className="detail-next-link-container">
             {prevContent && (
-              <Link
-                to={`/content/${prevContent.id}`}
-                className="detail-next-link"
-              >
-                {prevContent.id}
+              <Link to={`/content/${prevContent.id}`}>
+                <div className="detail-next-link-arrow-container">{"<"}</div>
+                <div className="detail-next-link-info-container">
+                  <p>이전 글</p>
+                  <h4>
+                    {prevContent.title}
+                    {prevContent.title}
+                  </h4>
+                </div>
               </Link>
             )}
           </div>
           <div className="detail-next-link-container">
             {nextContent && (
-              <Link
-                to={`/content/${nextContent.id}`}
-                className="detail-next-link"
-              >
-                {nextContent.id}
+              <Link to={`/content/${nextContent.id}`}>
+                <div className="detail-next-link-info-container">
+                  <p className="detail-next-link-next">다음 글</p>
+                  <h4 className="detail-next-link-next">{nextContent.title}</h4>
+                </div>
+                <div className="detail-next-link-arrow-container">{">"}</div>
               </Link>
             )}
           </div>
