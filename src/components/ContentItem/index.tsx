@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SERVER_URL } from "../../lib/constants";
 import { TContentPreview } from "../../lib/types";
-import iconExit from "../../assets/images/icon_exit.png";
+import iconNoThumbnail from "../../assets/images/no-thumbnail.png";
 import "./index.css";
 
 interface IProps {
@@ -43,7 +43,9 @@ const ContentItem = ({ content }: IProps) => {
           <img
             className="contentlist-item-pic"
             src={
-              content.thumbnail ? `${SERVER_URL}${content.thumbnail}` : iconExit
+              content.thumbnail
+                ? `${SERVER_URL}${content.thumbnail}`
+                : iconNoThumbnail
             }
             alt=""
           />

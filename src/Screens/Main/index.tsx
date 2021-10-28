@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, RouteChildrenProps } from "react-router-dom";
+import CategoryLink from "../../components/CategoryLink";
+import MainContent from "../../components/MainContent";
+import TitleLink from "../../components/TitleLink";
+import { MAIN_DESCRIPTION } from "../../lib/constants";
 import { api_getCategoryNames, getMainData } from "../../lib/fetcher";
 import { TMainData } from "../../lib/types";
 import "./index.css";
@@ -89,8 +93,8 @@ const MainScreen = ({ history }: RouteChildrenProps) => {
 
   return (
     <div className="main-wrapper">
-      <span className="main-logo-container">LOGO</span>
-      <p className="main-introduce">한 줄 소개</p>
+      <TitleLink clickable={false} />
+      <p className="main-introduce">{MAIN_DESCRIPTION}</p>
 
       <div className="main-text-container">
         <span className="main-text-hot">HOT 컨텐츠</span>
@@ -108,7 +112,7 @@ const MainScreen = ({ history }: RouteChildrenProps) => {
           <label htmlFor="radioHit" className="main-label-hot">
             조회순
           </label>
-
+          &nbsp;&nbsp;&nbsp;
           <input
             type="radio"
             name="mainRadio"
@@ -144,11 +148,12 @@ const MainScreen = ({ history }: RouteChildrenProps) => {
             ? "contentPreviewsByHit"
             : "contentPreviewsByLike"
         ].map((c) => {
+          console.log(c);
           return (
-            <div
-              className="main-content-container"
+            <MainContent
+              content={c}
               key={c.id}
-              onClick={() => {
+              _click={() => {
                 if (dismissClick) {
                   dismissClick = false;
                   return;
@@ -159,9 +164,7 @@ const MainScreen = ({ history }: RouteChildrenProps) => {
 
                 history.push(`/content/${c.id}`, { category: c.category });
               }}
-            >
-              {c.id}
-            </div>
+            />
           );
         })}
       </div>
@@ -173,13 +176,7 @@ const MainScreen = ({ history }: RouteChildrenProps) => {
       <div className="main-category-wrapper">
         {/* Grid Layout */}
         {categories.map((c) => (
-          <Link
-            key={c}
-            className="main-category-link"
-            to={`/contents?category=${c}`}
-          >
-            {c}
-          </Link>
+          <CategoryLink name={c} key={c} />
         ))}
       </div>
     </div>

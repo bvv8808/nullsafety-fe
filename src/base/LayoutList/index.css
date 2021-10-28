@@ -8,13 +8,6 @@
   display: flex;
   font-family: batang_regular;
 }
-.l-list-title-container {
-  font-size: 28px;
-  font-family: batang_bold;
-  align-items: center;
-  padding: 15px 0 15px 5px;
-  border-bottom: 1px solid #eee;
-}
 .l-list-title-container > span {
   width: 35px;
   height: 35px;

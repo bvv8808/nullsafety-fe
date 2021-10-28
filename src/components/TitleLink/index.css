@@ -1,0 +1,8 @@
+.titlelink-container {
+  font-size: 28px;
+  font-family: batang_bold;
+  align-items: center;
+  padding: 15px 0 15px 5px;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+}

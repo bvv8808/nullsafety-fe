@@ -4,6 +4,8 @@ export type TContentPreview = {
   category: string;
   thumbnail: string;
   createdAt: string;
+  hit: number;
+  liked: number;
 };
 
 export type TContent = {

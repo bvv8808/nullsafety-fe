@@ -3,6 +3,7 @@ import { api_getCategoryNames } from "../../lib/fetcher";
 import "./index.css";
 import { Link } from "react-router-dom";
 import icoExit from "../../assets/images/icon_exit.png";
+import TitleLink from "../../components/TitleLink";
 
 interface IProps {
   categoryName: string;
@@ -53,16 +54,7 @@ const LayoutList = ({ categoryName, children }: IProps) => {
 
   return (
     <div className="l-list-wrapper">
-      <div className="flex-row l-list-title-container">
-        <span
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        >
-          LOGO
-        </span>
-        NullSafety; 너의 새 이쁜 티
-      </div>
+      <TitleLink />
       <span className="l-list-menu" onClick={toggleMenu}>
         MENU
       </span>

@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   color: #224;
+  -ms-overflow-style: none;
 }
 
 :root {
@@ -8,6 +9,10 @@
   --title-color: #234555;
   --brown-light: #e6c08d;
   --skyblue: #8cc6e6;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @font-face {

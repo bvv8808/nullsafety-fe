@@ -4,10 +4,7 @@ import { api_getContentsByCategory } from "../../lib/fetcher";
 import { TContentPreview } from "../../lib/types";
 import qs from "querystring";
 import "./index.css";
-import { Link } from "react-router-dom";
 import LayoutList from "../../base/LayoutList";
-import iconExit from "../../assets/images/icon_exit.png";
-import { SERVER_URL } from "../../lib/constants";
 import ContentItem from "../../components/ContentItem";
 
 const fetchLimit = 3;
@@ -61,26 +58,6 @@ const ContentListScreen = ({ location }: RouteComponentProps) => {
       if (moreBox) observer.unobserve(moreBox);
     };
   }, [categoryName]);
-
-  // useEffect(() => {
-  //   endFetch = false;
-  //   from = 0;
-
-  //   if (fetching) return;
-  //   fetching = true;
-  //   api_getContentsByCategory({
-  //     category: categoryName,
-  //     offset: from,
-  //     limit: fetchLimit,
-  //   }).then((contents) => {
-  //     fetching = false;
-  //     setContentPreviews(contents);
-  //   });
-
-  //   return () => {
-  //     console.log("Hello");
-  //   };
-  // }, [categoryName]);
 
   return (
     <LayoutList categoryName={categoryName}>

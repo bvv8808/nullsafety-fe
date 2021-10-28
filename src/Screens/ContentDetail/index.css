@@ -1,6 +1,7 @@
 .detail-wrapper {
   padding: 30px 10px 0 10px;
   overflow: auto;
+  width: 100%;
 }
 
 .detail-content-container {
@@ -34,11 +35,14 @@
 
 .detail-next-link-arrow-container {
   width: 15%;
+  /* padding: 0 10%; */
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px dotted red;
+  /* border: 1px dotted red; */
+  font-weight: 900;
+  font-size: 20px;
 }
 
 .detail-next-link-info-container {
