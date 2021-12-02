@@ -11,10 +11,10 @@ import ContentTitle from "../../components/ContentTitle";
 
 const fakeContent: TContent = {
   id: -1,
-  title: "",
-  content: "",
-  category: "",
-  createdAt: "",
+  title: ".",
+  content: ".",
+  category: ".",
+  createdAt: ".",
   liked: -1,
 };
 
@@ -38,8 +38,6 @@ const ContentDetailScreen = ({
     // console.log("cid: ", cid);
     api_getFullContent(cid).then((c) => {
       if (!c) return;
-
-      console.log(c);
 
       setContent(c.contentData);
       setLiked(c.contentData.liked);
@@ -84,7 +82,11 @@ const ContentDetailScreen = ({
         <Thumb onClick={like} cntLike={liked} />
 
         <div className="detail-next-link-wrapper">
-          <div className="detail-next-link-container">
+          <div
+            className={`detail-next-link-container ${
+              prevContent ? "detail-next-link-exist" : ""
+            }`}
+          >
             {prevContent && (
               <Link to={`/content/${prevContent.id}`}>
                 <div className="detail-next-link-arrow-container">{"<"}</div>
@@ -98,7 +100,11 @@ const ContentDetailScreen = ({
               </Link>
             )}
           </div>
-          <div className="detail-next-link-container">
+          <div
+            className={`detail-next-link-container ${
+              nextContent ? "detail-next-link-exist" : ""
+            }`}
+          >
             {nextContent && (
               <Link to={`/content/${nextContent.id}`}>
                 <div className="detail-next-link-info-container">
